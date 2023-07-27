@@ -1,0 +1,17 @@
+name: Deploy Code
+on: push
+jobs:
+  run-linters:
+    name: Run Linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - uses: wearerequired/lint-action@v2.3.0
+        with:
+          eslint: true
+          prettier: true
